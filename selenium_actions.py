@@ -42,7 +42,7 @@ gender_radio = driver.find_element_by_xpath('//*[@id="genterWrapper"]/div[2]/div
 gender_radio.click()
 
 mobile_field = driver.find_element_by_css_selector('#userNumber')
-mobile_field.send_keys('+380991111111')
+mobile_field.send_keys('3809911111')
 
 date_birth = driver.find_element_by_css_selector('#dateOfBirthInput')
 date_birth.send_keys(Keys.CONTROL, 'a')
@@ -68,6 +68,12 @@ state_select.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
 city_select = driver.find_element_by_css_selector('[id="react-select-4-input"]')
 city_select.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
 
+submit_btn = driver.find_element_by_css_selector('#submit')
+submit_btn.click()
+
+driver.implicitly_wait(3)
+close_modal = driver.find_element_by_css_selector('#closeLargeModal')
+close_modal.click()
 driver.quit()
 
 
