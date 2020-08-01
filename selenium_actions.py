@@ -15,6 +15,12 @@ https://demoqa.com/webtables
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
+def getDriver():
+    driver = webdriver.Chrome(executable_path="c:/selenium/chromedriver.exe")
+    driver.set_window_size(1920, 1080)
+    driver.get("https://demoqa.com/webtables")
+    return driver
+
 persons = [];
 persons.append(['Dima', 'Litvin', 'dimalitvin192.0@gmail.com', 22, 20000, 'Java Programmer'])
 persons.append(['Petro', 'Litvinov', 'petro997.0@gmail.com', 20, 30000, 'Senior QA automayion'])
@@ -26,10 +32,7 @@ persons.append(['Tolya', 'Ageev', 'dimalitvin192.0@gmail.com', 19, 15000, 'SQL d
 persons.append(['Vlad', 'Magdych', 'vlad@gmail.com', 24, 15000, 'QC'])
 
 # 1. Pagination, 3. Add new worker
-driver = webdriver.Chrome(executable_path="c:/selenium/chromedriver.exe")
-driver.set_window_size(1920, 1080)
-driver.get("https://demoqa.com/webtables")
-
+driver = getDriver()
 addButton = driver.find_element_by_css_selector('div[class = \'col-md-7\'] > button[id = \'addNewRecordButton\']')
 for person in persons:
     addButton.click()
@@ -50,9 +53,7 @@ print countOfPages.text
 assert '2' in countOfPages.text
 
 # 2. Row count selection
-driver = webdriver.Chrome(executable_path="c:/selenium/chromedriver.exe")
-driver.set_window_size(1920, 1080)
-driver.get("https://demoqa.com/webtables")
+driver = getDriver();
 
 rowsCountSelection = driver.find_elements_by_css_selector('span.select-wrap.-pageSizeOptions > select > option')
 for rowCountSelection in rowsCountSelection:
@@ -61,18 +62,14 @@ for rowCountSelection in rowsCountSelection:
         break
 
 # 4 Delete worker
-driver = webdriver.Chrome(executable_path='c:/selenium/chromedriver.exe')
-driver.set_window_size(1920, 1080)
-driver.get('https://demoqa.com/webtables')
+driver = getDriver();
 
 deleted = driver.find_elements_by_css_selector(
     'div.rt-tbody > div:nth-child(1) > div > div:nth-child(7) > div > span[title=\'Delete\'] > svg')
 deleted[0].click()
 
 # 5 Delete all workers
-driver = webdriver.Chrome(executable_path='c:/selenium/chromedriver.exe')
-driver.set_window_size(1920, 1080)
-driver.get('https://demoqa.com/webtables')
+driver = getDriver();
 
 rows = driver.find_elements_by_css_selector(
     'div.rt-tbody > div[class = \'rt-tr-group\'] > div[class = \'rt-tr -odd\'], div[class = \'rt-tr -even\']')
@@ -81,9 +78,7 @@ for row in rows:
     button[0].click()
 
 # 8. Check search by all column values
-driver = webdriver.Chrome(executable_path='c:/selenium/chromedriver.exe')
-driver.set_window_size(1920, 1080)
-driver.get('https://demoqa.com/webtables')
+driver =  getDriver();
 search = driver.find_element_by_css_selector(
     'div[class = \'web-tables-wrapper\'] > div:nth-child(2) > div:nth-child(2) > div > input')
 search.send_keys('Cierra', Keys.ENTER)
@@ -123,9 +118,7 @@ assert departments[0].text == 'Legal'
 search.clear()
 
 #7. Validate data in worker row after creating worker
-driver = webdriver.Chrome(executable_path='c:/selenium/chromedriver.exe')
-driver.set_window_size(1920, 1080)
-driver.get('https://demoqa.com/webtables')
+driver = getDriver()
 addButton = driver.find_element_by_css_selector('div[class = \'col-md-7\'] > button[id = \'addNewRecordButton\']')
 addButton.click()
 person = ['Ludmila', 'Ageeva', 'luda@gmail.com', '19', '20000', 'Middle SQL developer']
@@ -156,6 +149,7 @@ for row in rows:
 assert j == len(person)
 
 # 6. Find worker in search field and edit it
+driver = getDriver();
 search = driver.find_element_by_css_selector(
     'div[class = \'web-tables-wrapper\'] > div:nth-child(2) > div:nth-child(2) > div > input')
 search.send_keys('Cierra', Keys.ENTER)
