@@ -1,0 +1,32 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+TEST_DATA = {
+            'First Name': 'maxym',
+            'Last Name': 'vlasen',
+            'Email': 'vlas90@gmail.com',
+            'Number': '0983331112',
+            'HB': '20 12 1990',
+            'Address': 'Kyiv, Tatarka'
+}
+
+driver = webdriver.Chrome()
+driver.get("https://demoqa.com/automation-practice-form")
+driver.find_element_by_css_selector("#firstName").send_keys(TEST_DATA['First Name'])
+driver.find_element(By.CSS_SELECTOR, "#lastName").send_keys(TEST_DATA['Last Name'])
+driver.find_element(By.CSS_SELECTOR, "#userEmail").send_keys(TEST_DATA['Email'])
+driver.find_element(By.CSS_SELECTOR, "#genterWrapper > div.col-md-9.col-sm-12 > div:nth-child(1) > label").click()
+driver.find_element(By.CSS_SELECTOR, "#userNumber").send_keys(TEST_DATA['Number'])
+calendar_input = driver.find_element(By.CSS_SELECTOR, "#dateOfBirthInput")
+calendar_input.send_keys(Keys.LEFT_CONTROL, 'a')
+calendar_input.send_keys('20 12 1990', Keys.ENTER)
+driver.find_element(By.CSS_SELECTOR, "#subjectsInput").send_keys('Comp')
+driver.find_element(By.CSS_SELECTOR, "#subjectsInput").send_keys(Keys.ENTER)
+driver.find_element_by_id("hobbies-checkbox-1").send_keys(Keys.SPACE)
+driver.find_element(By.CSS_SELECTOR, "#currentAddress").send_keys(TEST_DATA['Address'])
+driver.find_element_by_css_selector("#react-select-3-input").send_keys('har', Keys.ENTER)
+driver.find_element_by_css_selector("#react-select-4-input").send_keys('pani', Keys.ENTER)
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+driver.find_element_by_css_selector("#submit").click()
+assert "Thanks for submitting the form" == driver.find_element_by_css_selector("#example-modal-sizes-title-lg").text
+driver.quit()
