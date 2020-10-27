@@ -1,4 +1,4 @@
-"""
+
 Basic level:
 1. Fill all fields in forms except "picture" 
 2. Click on [Submit] button
@@ -17,4 +17,4 @@ Check next test cases:
 8. Check search by all column values
 
 https://demoqa.com/webtables
-"""
+
