@@ -16,3 +16,8 @@
 // 8. Check search by all column values
 
 // https://demoqa.com/webtables
+
+
+it('Test google', () => {
+	cy.visit('https://google.com')
+})
