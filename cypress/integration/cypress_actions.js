@@ -37,6 +37,7 @@ describe('Basic level', () => {
     })
 
 });
+
 // Advanced level:
 // Check next test cases:
 // 1. Pagination 
@@ -49,3 +50,72 @@ describe('Basic level', () => {
 // 8. Check search by all column values
 
 // https://demoqa.com/webtables
+
+describe('Advanced level', () => {
+    beforeEach(() => {
+        cy.visit('https://demoqa.com/webtables');
+    });
+
+    it('Pagination', () => {
+        cy.get('.-pageInfo').contains('1');
+    });
+
+    it('Rows count selection', () => {
+        cy.get('select').select('10 rows');
+    });
+
+    it('Add new worker', () => {
+        cy.get('#addNewRecordButton').click();
+        cy.get('#firstName').type('Lola');
+        cy.get('#lastName').type('Kiska');
+        cy.get('#userEmail').type('dodik@shmodik.com')
+        cy.get('#age').type('31');
+        cy.get('#salary').type('160000');
+        cy.get('#department').type('QA')
+        cy.get('#submit').click();
+
+    });
+
+    it('Delete worker', () => {
+        cy.get('#delete-record-1 > svg > path').click();
+    })
+
+    it('Delete all worker', () => {
+        cy.get('#delete-record-1 > svg > path').click();
+        cy.get('#delete-record-2 > svg > path').click();
+        cy.get('#delete-record-3 > svg > path').click();
+    })
+
+    it('Find worker in search field and edit it', () => {
+        cy.get('#searchBox').type('Kierra{enter}');
+        cy.get('#edit-record-3 > svg > path').click();
+        cy.get('#lastName').type('{selectall}').type('Zhuzhuka');
+        cy.get('#submit').click();
+        
+    });
+
+    it('Validate data in worker row after creating worker', () => {
+        cy.get('#addNewRecordButton').click();
+        cy.get('#firstName').type('Lola');
+        cy.get('#lastName').type('Kiska');
+        cy.get('#userEmail').type('dodik@shmodik.com')
+        cy.get('#age').type('31');
+        cy.get('#salary').type('160000');
+        cy.get('#department').type('QA')
+        cy.get('#submit').click();
+        cy.get(':nth-child(4) > .rt-tr > :nth-child(1)').contains('Lola');
+    });
+
+    it('Check search by all column values', () => {
+        cy.get('#searchBox').type('Kierra{enter}');
+        cy.get('#searchBox').type('{selectall}').type('160000{enter}');
+        cy.get('#searchBox').type('{selectall}').type('Kiska{enter}');
+        cy.get('#searchBox').type('{selectall}').type('dodik@shmodik.com{enter}');
+        cy.get('#searchBox').type('{selectall}').type('31{enter}');
+        cy.get('#searchBox').type('{selectall}').type('QA{enter}');
+    });
+
+
+
+
+});
