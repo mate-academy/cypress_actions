@@ -79,7 +79,7 @@ describe ('advanced_cypress_action', () => {
         }});
     
     Cypress.Commands.add('DelWorker', (WorkerNum) => {
-        let i = 1;
+        let i = 2;
         
         for ( i; i <= WorkerNum; i++){
         let n = '#delete-record-'+i;
@@ -108,13 +108,15 @@ describe ('advanced_cypress_action', () => {
 
 // 4. Delete worker
     it('DeleteWorker', () => {
-        cy.DelWorker(1);
-        cy.wait(2000);
+        cy.get('#delete-record-1').click();
     });
 
 // 5. Delete all worker
+
+
     it('DeleteWorker', () => {
-        cy.DelWorker(8);
+            cy.DelWorker(8);
+            cy.get('.rt-noData').contains('No rows found').should('be.visible');
     });
 
 // 6. Find worker in search field and edit it
@@ -172,4 +174,3 @@ describe ('advanced_cypress_action', () => {
      })
 
 });
-
