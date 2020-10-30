@@ -112,11 +112,9 @@ describe ('advanced_cypress_action', () => {
     });
 
 // 5. Delete all worker
-
-
     it('DeleteWorker', () => {
-            cy.DelWorker(8);
-            cy.get('.rt-noData').contains('No rows found').should('be.visible');
+        cy.DelWorker(8);
+        cy.get('.rt-noData').contains('No rows found').should('be.visible');
     });
 
 // 6. Find worker in search field and edit it
