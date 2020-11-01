@@ -108,11 +108,17 @@ describe('Advanced level', () => {
 
     it('Check search by all column values', () => {
         cy.get('#searchBox').type('Kierra{enter}');
-        cy.get('#searchBox').type('{selectall}').type('160000{enter}');
-        cy.get('#searchBox').type('{selectall}').type('Kiska{enter}');
-        cy.get('#searchBox').type('{selectall}').type('dodik@shmodik.com{enter}');
-        cy.get('#searchBox').type('{selectall}').type('31{enter}');
-        cy.get('#searchBox').type('{selectall}').type('QA{enter}');
+        cy.get('.rt-tbody > :nth-child(1) > .rt-tr > :nth-child(1)').contains('Kierra').should('exist');
+        cy.get('#searchBox').type('{selectall}').type('Vega{enter}');
+        cy.get('.rt-tbody > :nth-child(1) > .rt-tr > :nth-child(2)').contains('Vega').should('exist');
+        cy.get('#searchBox').type('{selectall}').type('45{enter}');
+        cy.get('.rt-tbody > :nth-child(1) > .rt-tr > [style="flex: 40 0 auto; width: 40px; max-width: 40px;"]').contains('45').should('exist');
+        cy.get('#searchBox').type('{selectall}').type('alden@example.com{enter}');
+        cy.get('.rt-tbody > :nth-child(1) > .rt-tr > :nth-child(4)').contains('alden@example.com').should('exist');
+        cy.get('#searchBox').type('{selectall}').type('12000{enter}');
+        cy.get('.rt-tbody > :nth-child(1) > .rt-tr > :nth-child(5)').contains('12000').should('exist');
+        cy.get('#searchBox').type('{selectall}').type('Insurance{enter}');
+        cy.get('.rt-table').contains('Insurance').should('exist');
     });
 
 
