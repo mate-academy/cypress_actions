@@ -7,6 +7,14 @@
 
 // describe ('Working with student registation form', () => {
 
+// Basic level:
+// 1. Fill all fields in forms except "picture" 
+// 2. Click on [Submit] button
+// 3. Validate inputed data in modal window
+// Site: https://demoqa.com/automation-practice-form
+
+// describe ('Working with student registation form', () => {
+
   it ('Fill all fields in forms except "picture"', () => {
     cy.visit('https://demoqa.com/automation-practice-form')
     cy.get('[placeholder="First Name"]').type('testdima')
@@ -21,8 +29,18 @@
     cy.get('[class=" css-yk16xz-control"]').type('NCR{enter}')
     cy.get('[class=" css-yk16xz-control"]').type('Delhi{enter}')
     cy.get('[type="submit"]').click()
+    cy.get('tbody > :nth-child(1) > :nth-child(2)').contains('testdima testgood')
     
+    cy.get('tbody > :nth-child(2) > :nth-child(2)').contains('test@test.com.mate')
+    cy.get('tbody > :nth-child(3) > :nth-child(2)').contains('Male')
+    cy.get('tbody > :nth-child(4) > :nth-child(2)').contains('12345678')
+    cy.get('tbody > :nth-child(5) > :nth-child(2)').contains('28 October,1987')
+    cy.get('tbody > :nth-child(6) > :nth-child(2)').contains('Maths')
+    cy.get('tbody > :nth-child(7) > :nth-child(2)').contains('Sports')
+    cy.get('tbody > :nth-child(9) > :nth-child(2)').contains('testAddress')
+    cy.get('tbody > :nth-child(10) > :nth-child(2)').contains('NCR Delhi')
     })
+    
     //
     // Advanced level:
     // Check next test cases:
