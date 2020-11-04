@@ -3,6 +3,7 @@
 // 2. Click on [Submit] button
 // 3. Validate inputed data in modal window
 // Site: https://demoqa.com/automation-practice-form
+
 const TestData = {
   'First Name': 'Tania',
   'Last Name': 'Lastname',
@@ -15,7 +16,7 @@ const TestData = {
   'Department': 'QA'
   };
  
-it('Fill all fields', () => {
+/*it('Fill all fields', () => {
   cy.visit('https://demoqa.com/automation-practice-form');
   cy.get('#firstName').type(TestData['First Name']);
   cy.get('#lastName').type(TestData['Last Name']);
@@ -40,6 +41,7 @@ it('Fill all fields', () => {
   cy.get('tbody > :nth-child(9)').contains(TestData['Address']);  
   cy.get('tbody > :nth-child(10)').contains('NCR Delhi');
     });
+*/    
 
 // Advanced level:
 // Check next test cases:
@@ -54,7 +56,7 @@ it('Fill all fields', () => {
 
 // https://demoqa.com/webtables
 
-/*before (() => {cy.visit('https://demoqa.com/webtables');
+before (() => {cy.visit('https://demoqa.com/webtables');
 });
 
 it('1. Pagination',() => {
@@ -128,5 +130,5 @@ it('8. Check search by all column values', () => {
   cy.get('[placeholder="Type to search"]').clear();
   cy.get('[placeholder="Type to search"]').type(TestData['Department']);
 });
-*/
+
 
