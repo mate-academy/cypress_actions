@@ -50,7 +50,15 @@ describe('Papilota Dmytro Homework 10-02', () => {
 
         cy.get('tbody > :nth-child(1) > :nth-child(2)').should('have.text', 'Name Name')
         cy.get('tbody > :nth-child(2) > :nth-child(2)').should('have.text', 'userEmail@tect.com')
+        cy.get('tbody > :nth-child(3) > :nth-child(2)').should('have.text', 'Male')
         cy.get('tbody > :nth-child(4) > :nth-child(2)').should('have.text', '12345')
+        cy.get('tbody > :nth-child(5) > :nth-child(2)').should('have.text', '14 February,2001')
+        cy.get('tbody > :nth-child(6) > :nth-child(2)').should('have.text', 'English')
+        cy.get('tbody > :nth-child(7) > :nth-child(2)').should('have.text', 'Sports')
+        cy.get('tbody > :nth-child(9) > :nth-child(2)').should('have.text', 'currentAddress')
+        cy.get('tbody > :nth-child(10) > :nth-child(2)').should('have.text', 'NCR Delhi')
+
+        
         // cy.get(':nth-child(4) > .nav-link').contains(user.username).should('exist')
     })
   })
