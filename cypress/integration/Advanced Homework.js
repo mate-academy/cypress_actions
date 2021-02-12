@@ -15,6 +15,21 @@
 
 describe('Advanced | Yurii Parfinenko', () => {
 
+    const user = {
+        firstName: 'Valera',
+        lastName: 'Communist',
+        age: '71',
+        email: 'valeracommunist@mail.com',
+        phoneNumber: '0675554367',
+        dateOfBirth: '03 October,1995',
+        Subject: 'Mathematics',
+        address: 'Rambler',
+        department: 'Valera',
+        salary: '80450',
+        country: 'Rajasthan',
+        city: 'Jaipur'
+    };
+
     it ('Select 5 rows', () => {
         cy.selectRows(5);
     });
