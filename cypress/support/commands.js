@@ -39,6 +39,15 @@ const user = {
     city: 'Jaipur'
 };
 
+const tableLocators = {
+    firstName: ':nth-child(4) > .rt-tr > :nth-child(1)',
+    lastName: ':nth-child(4) > .rt-tr > :nth-child(2)',
+    age: ':nth-child(4) > .rt-tr > :nth-child(3)',
+    email: ':nth-child(4) > .rt-tr > :nth-child(4)',
+    salary: ':nth-child(4) > .rt-tr > :nth-child(5)',
+    department: ':nth-child(4) > .rt-tr > :nth-child(6)'
+};
+
 Cypress.Commands.add('registration', () => {
     cy.visit('automation-practice-form');
     
@@ -57,14 +66,14 @@ Cypress.Commands.add('registration', () => {
 });
 
 Cypress.Commands.add('validation', () => {
-    cy.get('tbody > :nth-child(1) > :nth-child(2)').should('contain', user.firstName + ' ' + user.lastName);
-    cy.get('tbody > :nth-child(2) > :nth-child(2)').should('contain', user.email);
-    cy.get('tbody > :nth-child(3) > :nth-child(2)').should('contain', 'Male');
-    cy.get('tbody > :nth-child(4) > :nth-child(2)').should('contain', user.phoneNumber);
-    cy.get('tbody > :nth-child(5) > :nth-child(2)').should('contain', user.dateOfBirth);
-    cy.get('tbody > :nth-child(7) > :nth-child(2)').should('contain', 'Music');
-    cy.get('tbody > :nth-child(9) > :nth-child(2)').should('contain', user.address);
-    cy.get('tbody > :nth-child(10) > :nth-child(2)').should('contain', user.country + ' ' + user.city);
+    cy.contains('tr', 'Student Name').should('contain', user.firstName + ' ' + user.lastName);
+    cy.contains('tr', 'Student Email').should('contain', user.email);
+    cy.contains('tr', 'Gender').should('contain', 'Male');
+    cy.contains('tr', 'Mobile').should('contain', user.phoneNumber);
+    cy.contains('tr', 'Date of Birth').should('contain', user.dateOfBirth);
+    cy.contains('tr', 'Hobbies').should('contain', 'Music');
+    cy.contains('tr', 'Address').should('contain', user.address);
+    cy.contains('tr', 'State and City').should('contain', user.country + ' ' + user.city);
 });
 
 Cypress.Commands.add('addWorkers', (numberOfWorkers) => {
@@ -82,17 +91,17 @@ Cypress.Commands.add('addWorkers', (numberOfWorkers) => {
 
 Cypress.Commands.add('searchByColumn', () => {
     cy.get('#searchBox').type(user.firstName);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
     cy.get('#searchBox').type('{selectAll}' + user.lastName);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
     cy.get('#searchBox').type('{selectAll}' + user.age);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
     cy.get('#searchBox').type('{selectAll}' + user.email);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
     cy.get('#searchBox').type('{selectAll}' + user.salary);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
     cy.get('#searchBox').type('{selectAll}' + user.department);
-    cy.get(':nth-child(1) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
+    cy.get('.rt-tr.-odd').should('contain', user.firstName);
 });
 
 Cypress.Commands.add('selectRows', (numberOfRows) => {
@@ -102,11 +111,11 @@ Cypress.Commands.add('selectRows', (numberOfRows) => {
     cy.get('select').select(numberOfRows + ' rows');
 });
 
-Cypress.Commands.add('validation', () => {
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(1)').should('contain', user.firstName);
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(2)').should('contain', user.lastName);
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(3)').should('contain', user.age);
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(4)').should('contain', 1 + user.email);
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(5)').should('contain', user.salary);
-    cy.get(':nth-child(4) > .rt-tr > :nth-child(6)').should('contain', user.department);
+Cypress.Commands.add('recordValidation', () => {
+    cy.get(tableLocators.firstName).should('contain', user.firstName);
+    cy.get(tableLocators.lastName).should('contain', user.lastName);
+    cy.get(tableLocators.age).should('contain', user.age);
+    cy.get(tableLocators.email).should('contain', 1 + user.email);
+    cy.get(tableLocators.salary).should('contain', user.salary);
+    cy.get(tableLocators.department).should('contain', user.department);
 });
