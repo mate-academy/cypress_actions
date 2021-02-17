@@ -69,7 +69,7 @@ describe('Advanced | Yurii Parfinenko', () => {
             };
     });
 
-    it.only ('Validate Data In Worker Row after creating a worker', () => {
+    it ('Validate Data In Worker Row after creating a worker', () => {
         cy.selectRows(5);
         cy.addWorkers(1);
         cy.recordValidation();
